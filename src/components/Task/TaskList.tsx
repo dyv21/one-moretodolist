@@ -21,7 +21,7 @@ export const TaskList = (props: TasksListPropsType) => {
         <li key={task.id}>
           <input type="checkbox" checked={task.isDone}/>
           <span>{task.title}</span>
-          <button onClick={()=> alert(task.id)} >x</button>
+          <button onClick={() => props.removeTask(task.id)} >x</button>
         </li>
       )
       )}

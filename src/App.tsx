@@ -15,9 +15,9 @@ function App() {
     ])
 
     const removeTask = (id:number) => {
-        console.log('click')
         tasks = tasks.filter(task => task.id != id)
         console.log(tasks)
+        setTasks(tasks)
     };
 
     return (
