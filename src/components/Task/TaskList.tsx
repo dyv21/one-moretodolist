@@ -1,5 +1,7 @@
 import React from 'react';
 import {TaskButton} from "./TaskButton";
+import {FilterValuesType} from "../../App";
+import {TasksListPropsType} from "../TodoList/TodoList";
 
 
 export type TaskPropsType = {
@@ -9,21 +11,17 @@ export type TaskPropsType = {
 }
 
 
-export type TasksListPropsType = {
-  tasks: Array<TaskPropsType>
-  removeTask: (id:number) => void
-}
-
 export const TaskList = (props: TasksListPropsType) => {
   return (
     <ul>
       {props.tasks.map(task => (
-        <li key={task.id}>
-          <input type="checkbox" checked={task.isDone}/>
-          <span>{task.title}</span>
-          <button onClick={() => props.removeTask(task.id)} >x</button>
-        </li>
-      )
+          <li key={task.id}>
+            <input type="checkbox" checked={task.isDone}/>
+            <span>{task.title}</span>
+
+            <TaskButton onClickHandler={() => props.removeTask(task.id)} title={'x'}/>
+          </li>
+        )
       )}
     </ul>
   );
