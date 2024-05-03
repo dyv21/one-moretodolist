@@ -7,7 +7,7 @@ import {FilterValuesType} from "../../App";
 
 export type TasksListPropsType = {
   tasks: Array<TaskPropsType>
-  removeTask: (id: number) => void
+  removeTask: (id: string) => void
   changeFilter: (filter: FilterValuesType) => void
 }
 
@@ -19,9 +19,9 @@ export const TodoList = (props: TasksListPropsType) => {
 
       <TaskList tasks={props.tasks} removeTask={props.removeTask} changeFilter={props.changeFilter}/>
       <div>
-        <TaskButton onClickHandler={() => props.changeFilter('All')} title={'All'}/>
-        <TaskButton onClickHandler={() => props.changeFilter('Active')} title={'Active'}/>
-        <TaskButton onClickHandler={() => props.changeFilter('Completed')} title={'Completed'}/>
+        <TaskButton onClickHandler={() => props.changeFilter('all')} title={'All'}/>
+        <TaskButton onClickHandler={() => props.changeFilter('active')} title={'Active'}/>
+        <TaskButton onClickHandler={() => props.changeFilter('completed')} title={'Completed'}/>
       </div>
     </div>
   );

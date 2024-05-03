@@ -1,11 +1,10 @@
 import React from 'react';
 import {TaskButton} from "./TaskButton";
-import {FilterValuesType} from "../../App";
 import {TasksListPropsType} from "../TodoList/TodoList";
 
 
 export type TaskPropsType = {
-  id: number
+  id: string
   title: string
   isDone: boolean
 }
@@ -18,7 +17,6 @@ export const TaskList = (props: TasksListPropsType) => {
           <li key={task.id}>
             <input type="checkbox" checked={task.isDone}/>
             <span>{task.title}</span>
-
             <TaskButton onClickHandler={() => props.removeTask(task.id)} title={'x'}/>
           </li>
         )
