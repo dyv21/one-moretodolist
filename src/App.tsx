@@ -31,14 +31,23 @@ function App() {
   }
 
   const addTask = (title: string) => {
-    let newTask = {id: v1(), title: title, isDone: false}
-    let newTasks = [newTask, ...tasksForTodolist]
-    setTasks(newTasks)
+    let newTaskTemplate = {id: v1(), title: title, isDone: false}
+
+    setTasks(Array(newTaskTemplate, ...tasksForTodolist))
+  }
+
+  const changeTaskStatus = (taskId: string, isDone: boolean) => {
+    const task = tasks.find(task => task.id === taskId)
+    if (task) {
+      task.isDone = isDone
+    }
+    setTasks(Array(...tasks))
   }
 
   return (
     <div className="App">
-      <TodoList tasks={tasksForTodolist} removeTask={removeTask} changeFilter={changeFilter} addTask={addTask}/>
+      <TodoList tasks={tasksForTodolist} removeTask={removeTask} changeFilter={changeFilter} addTask={addTask}
+                changeTaskStatus={changeTaskStatus}/>
     </div>
   );
 }

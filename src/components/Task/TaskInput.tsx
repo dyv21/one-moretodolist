@@ -21,6 +21,7 @@ export const TaskInput = (props: TaskInputProps) => {
     }
   }
 
+
   return (
     <div>
       <input value={props.value} onChange={onChangeInputHandler} onKeyUp={onKeyPressHandler}/>
