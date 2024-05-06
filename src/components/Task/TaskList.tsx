@@ -17,11 +17,11 @@ export const TaskList = (props: TasksListPropsType) => {
     <ul>
       {props.tasks.map(({id, title, isDone}) => {
 
-        const onCheckBoxChange = (e:ChangeEvent<HTMLInputElement>) => {
-         props.changeTaskStatus(id, e.currentTarget.checked)
+        const onCheckBoxChange = (e: ChangeEvent<HTMLInputElement>) => {
+          props.changeTaskStatus(id, e.currentTarget.checked)
         }
 
-        return <li key={id}>
+        return <li key={id} className={isDone ? "is-done" : ""}>
           <input onChange={onCheckBoxChange} type="checkbox" checked={isDone}/>
           <span>{title}</span>
           <TaskButton onClickHandler={() => props.removeTask(id)} title={'x'}/>
