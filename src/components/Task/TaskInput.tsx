@@ -1,7 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {TaskButton} from "./TaskButton";
-import {Simulate} from "react-dom/test-utils";
-
 
 type TaskInputProps = {
   value: string;
@@ -31,14 +29,13 @@ export const TaskInput = (props: TaskInputProps) => {
     }
   }
 
-
   return (
     <div>
-      <input value={props.value} onChange={onChangeInputHandler} onKeyUp={onKeyPressHandler}
+      <input value={props.value}
+             onChange={onChangeInputHandler}
+             onKeyUp={onKeyPressHandler}
              className={props.error ? "error" : ""}/>
-      <TaskButton onClickHandler={() => {
-        setNewTaskTitle()
-      }} title={'+'}/>
+      <TaskButton onClickHandler={() => {setNewTaskTitle()}} title={'+'}/>
       {props.error && <div className='error-message'>Field is required</div>}
     </div>
   );

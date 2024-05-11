@@ -5,7 +5,7 @@ type TaskButtonType = {
   onClickHandler?: () => void
   className?: string
 }
-export const TaskButton = ({title, onClickHandler, className}: TaskButtonType) => {
-  return <button className={className} onClick={onClickHandler}>{title}</button>
-};
+export const TaskButton = ({title, onClickHandler, className}: TaskButtonType) => (
+  <button className={className} onClick={onClickHandler}>{title}</button>
+)
 

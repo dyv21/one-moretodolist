@@ -3,7 +3,7 @@ import {TaskListTitle} from "../Task/TaskListTitle";
 import {TaskInput} from "../Task/TaskInput";
 import {TaskList, TaskPropsType} from "../Task/TaskList";
 import {TaskButton} from "../Task/TaskButton";
-import {FilterValuesType} from "../../App";
+import {FilterValuesType, TodoListType} from "../../App";
 
 export type TasksListPropsType = {
   tasks: Array<TaskPropsType>,
@@ -21,6 +21,7 @@ export type TodoListPropsType = {
   filter: FilterValuesType,
   id: string,
   title: string
+  removeTodolistHandler: (id:string) => void,
 }
 
 export const TodoList = (props: TodoListPropsType) => {
@@ -31,9 +32,14 @@ export const TodoList = (props: TodoListPropsType) => {
   const onChangeActiveHandler = () => props.changeFilter('active', props.id)
   const onChangeCompletedHandler = () => props.changeFilter('completed', props.id)
 
+
   return (
     <div>
-      <TaskListTitle title={props.title}/>
+      <div className="todolist-title-container">
+        <TaskListTitle title={props.title}/>
+        <TaskButton title={'x'} onClickHandler={()=> props.removeTodolistHandler(props.id)} />
+      </div>
+
       <TaskInput
         addTask={props.addTask}
         setInputValue={setInputValue}
