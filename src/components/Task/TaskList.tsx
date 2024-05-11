@@ -11,20 +11,20 @@ export type TaskPropsType = {
 
 
 export const TaskList = (props: TasksListPropsType) => {
-
+  console.log(props)
 
   return (
     <ul>
       {props.tasks.map(({id, title, isDone}) => {
 
         const onCheckBoxChange = (e: ChangeEvent<HTMLInputElement>) => {
-          props.changeTaskStatus(id, e.currentTarget.checked)
+          props.changeTaskStatus(id, e.currentTarget.checked, props.todoListId)
         }
 
         return <li key={id} className={isDone ? "is-done" : ""}>
           <input onChange={onCheckBoxChange} type="checkbox" checked={isDone}/>
           <span>{title}</span>
-          <TaskButton onClickHandler={() => props.removeTask(id)} title={'x'}/>
+          <TaskButton onClickHandler={() => props.removeTask(id, props.todoListId)} title={'x'}/>
         </li>
       })}
     </ul>

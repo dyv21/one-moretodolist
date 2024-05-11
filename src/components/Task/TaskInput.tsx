@@ -5,10 +5,11 @@ import {Simulate} from "react-dom/test-utils";
 
 type TaskInputProps = {
   value: string;
-  addTask: (value: string) => void;
+  addTask: (value: string, todolistId: string) => void;
   setInputValue: (value: string) => void;
-  error: null |string;
-  setError: (error:string | null ) => void;
+  error: null | string;
+  setError: (error: string | null) => void;
+  todoListId: string
 }
 
 export const TaskInput = (props: TaskInputProps) => {
@@ -18,7 +19,7 @@ export const TaskInput = (props: TaskInputProps) => {
       props.setError('Title is required')
       return;
     }
-    props.addTask(props.value)
+    props.addTask(props.value, props.todoListId)
     props.setInputValue('')
   }
 
@@ -33,8 +34,11 @@ export const TaskInput = (props: TaskInputProps) => {
 
   return (
     <div>
-      <input value={props.value} onChange={onChangeInputHandler} onKeyUp={onKeyPressHandler} className={props.error ? "error" : ""}/>
-      <TaskButton onClickHandler={() => {setNewTaskTitle()}} title={'+'}/>
+      <input value={props.value} onChange={onChangeInputHandler} onKeyUp={onKeyPressHandler}
+             className={props.error ? "error" : ""}/>
+      <TaskButton onClickHandler={() => {
+        setNewTaskTitle()
+      }} title={'+'}/>
       {props.error && <div className='error-message'>Field is required</div>}
     </div>
   );

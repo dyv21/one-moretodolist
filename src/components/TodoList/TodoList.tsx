@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {TaskListTitle} from "../Task/TaskListTitle";
 import {TaskInput} from "../Task/TaskInput";
 import {TaskList, TaskPropsType} from "../Task/TaskList";
@@ -6,33 +6,57 @@ import {TaskButton} from "../Task/TaskButton";
 import {FilterValuesType} from "../../App";
 
 export type TasksListPropsType = {
-  tasks: Array<TaskPropsType>
-  removeTask: (id: string) => void
-  changeTaskStatus: (taskId: string, isDone:boolean) => void
+  tasks: Array<TaskPropsType>,
+  removeTask: (id: string, todolistId: string) => void,
+  changeTaskStatus: (taskId: string, isDone: boolean, todoListId: string) => void,
+  todoListId: string
 }
 
 export type TodoListPropsType = {
-  tasks: Array<TaskPropsType>
-  removeTask: (id: string) => void
-  changeFilter: (filter: FilterValuesType) => void
-  addTask: (title:string) => void
-  changeTaskStatus: (taskId: string, isDone:boolean) => void
-  filter: FilterValuesType
+  tasks: Array<TaskPropsType>,
+  removeTask: (id: string, todolistId: string) => void,
+  changeFilter: (filter: FilterValuesType, todoListId: string) => void,
+  addTask: (title: string, todolistId: string) => void,
+  changeTaskStatus: (taskId: string, isDone: boolean, todoListId: string) => void,
+  filter: FilterValuesType,
+  id: string,
+  title: string
 }
 
 export const TodoList = (props: TodoListPropsType) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
 
+  const onChangeAllHandler = () => props.changeFilter('all', props.id)
+  const onChangeActiveHandler = () => props.changeFilter('active', props.id)
+  const onChangeCompletedHandler = () => props.changeFilter('completed', props.id)
+
   return (
     <div>
-      <TaskListTitle title={'What to learn'}/>
-      <TaskInput addTask={props.addTask} setInputValue={setInputValue} value={inputValue} error={error} setError={setError}/>
-      <TaskList tasks={props.tasks} removeTask={props.removeTask} changeTaskStatus={props.changeTaskStatus}/>
+      <TaskListTitle title={props.title}/>
+      <TaskInput
+        addTask={props.addTask}
+        setInputValue={setInputValue}
+        value={inputValue} error={error}
+        setError={setError} todoListId={props.id}/>
+      <TaskList
+        tasks={props.tasks}
+        removeTask={props.removeTask}
+        changeTaskStatus={props.changeTaskStatus}
+        todoListId={props.id}/>
       <div>
-        <TaskButton onClickHandler={() => props.changeFilter('all')} title={'All'} className={props.filter === 'all' ? "active-filter" : ''}/>
-        <TaskButton onClickHandler={() => props.changeFilter('active')} title={'Active'} className={props.filter === 'active' ? "active-filter" : ''}/>
-        <TaskButton onClickHandler={() => props.changeFilter('completed')} title={'Completed'} className={props.filter === 'completed' ? "active-filter" : ''}/>
+        <TaskButton
+          onClickHandler={onChangeAllHandler}
+          title={'All'}
+          className={props.filter === 'all' ? "active-filter" : ''}/>
+        <TaskButton
+          onClickHandler={onChangeActiveHandler}
+          title={'Active'}
+          className={props.filter === 'active' ? "active-filter" : ''}/>
+        <TaskButton
+          onClickHandler={onChangeCompletedHandler}
+          title={'Completed'}
+          className={props.filter === 'completed' ? "active-filter" : ''}/>
       </div>
     </div>
   );
