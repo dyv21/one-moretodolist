@@ -1,6 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useRef, useState} from 'react';
-import {Btn} from "./Btn";
-import {IconButton} from "@mui/material";
+
+import {IconButton, TextField} from "@mui/material";
 import {Add} from "@mui/icons-material";
 
 type InputProps = {
@@ -22,7 +22,7 @@ export const AddInputForm = (props: InputProps) => {
     setInputValue('');
   }
 
-const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.currentTarget.value)
+  const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.currentTarget.value)
 
   const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     setError(null)
@@ -33,11 +33,17 @@ const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => setInputValue
 
   return (
     <div>
-      <input value={inputValue} onChange={onChangeInputHandler} onKeyUp={onKeyPressHandler} className={error ? "error" : ""}/>
-      <IconButton size='small'  onClick={() => {setNewInputValue()}} title={'+'}>
+      <TextField
+        size='small'
+        value={inputValue} onChange={onChangeInputHandler}
+        onKeyUp={onKeyPressHandler}
+        label={'Enter text'}
+        error={!!error}
+        helperText={error}
+      />
+      <IconButton size='small' onClick={() => setNewInputValue()}>
         <Add color="primary"/>
       </IconButton>
-      {error && <div className='error-message'>Field is required</div>}
     </div>
   );
 };

@@ -35,9 +35,9 @@ export const TodoList = (props: TodoListPropsType) => {
   const onChangeActiveHandler = () => props.changeFilter('active', props.id)
   const onChangeCompletedHandler = () => props.changeFilter('completed', props.id)
 
-  const addTaskCallBack = (title: string) =>  props.addTask(title, props.id)
+  const addTaskCallBack = (title: string) => props.addTask(title, props.id)
 
-  const onChangeTitleHandler = (title:string) => {
+  const onChangeTitleHandler = (title: string) => {
 
     props.changeTodoListTitle(props.id, title)
   }
@@ -52,7 +52,7 @@ export const TodoList = (props: TodoListPropsType) => {
       </div>
 
       <AddInputForm addItem={addTaskCallBack}/>
-      {props.tasks.length === 0 && <p>Список пуст</p>}
+      {props.tasks.length === 0 && <p>List ii empty</p>}
       <TaskList
         tasks={props.tasks}
         removeTask={props.removeTask}
@@ -61,9 +61,11 @@ export const TodoList = (props: TodoListPropsType) => {
         todoListId={props.id}
       />
       <div>
-        <Btn onClickHandler={onChangeAllHandler} title={'All'} variant={props.filter === 'all' ? "contained" : undefined}/>
-        <Btn onClickHandler={onChangeActiveHandler} title={'Active'} variant={props.filter === 'active' ? "contained" : undefined}/>
-        <Btn onClickHandler={onChangeCompletedHandler} title={'Completed'} variant={props.filter === 'completed' ? "contained" : undefined}/>
+        <Btn onClickHandler={onChangeAllHandler} title={'All'} variant={props.filter === 'all' ? "contained" : 'text'}/>
+        <Btn onClickHandler={onChangeActiveHandler} title={'Active'}
+             variant={props.filter === 'active' ? "contained" : 'text'}/>
+        <Btn onClickHandler={onChangeCompletedHandler} title={'Completed'}
+             variant={props.filter === 'completed' ? "contained" : 'text'}/>
       </div>
     </div>
   );
