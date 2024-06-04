@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useRef, useState} from 'react';
 import {Button} from "./Button";
 
 type InputProps = {
@@ -20,7 +20,8 @@ export const AddInputForm = (props: InputProps) => {
     setInputValue('');
   }
 
-  const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.currentTarget.value)
+const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.currentTarget.value)
+
   const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     setError(null)
     if (e.ctrlKey && e.key || e.key === 'Enter') {
@@ -31,7 +32,7 @@ export const AddInputForm = (props: InputProps) => {
   return (
     <div>
       <input value={inputValue} onChange={onChangeInputHandler} onKeyUp={onKeyPressHandler} className={error ? "error" : ""}/>
-      <Button onClickHandler={() => setNewInputValue()} title={'+'}/>
+      <Button onClickHandler={() => { setNewInputValue()}} title={'+'}/>
       {error && <div className='error-message'>Field is required</div>}
     </div>
   );
