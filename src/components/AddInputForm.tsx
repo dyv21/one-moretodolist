@@ -1,5 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useRef, useState} from 'react';
-import {Button} from "./Button";
+import {Btn} from "./Btn";
 
 type InputProps = {
   addItem: (value: string) => void;
@@ -32,7 +32,7 @@ const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => setInputValue
   return (
     <div>
       <input value={inputValue} onChange={onChangeInputHandler} onKeyUp={onKeyPressHandler} className={error ? "error" : ""}/>
-      <Button onClickHandler={() => { setNewInputValue()}} title={'+'}/>
+      <Btn onClickHandler={() => { setNewInputValue()}} title={'+'}/>
       {error && <div className='error-message'>Field is required</div>}
     </div>
   );

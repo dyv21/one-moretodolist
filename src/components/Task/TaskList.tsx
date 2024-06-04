@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import {Button} from "../Button";
+import {Btn} from "../Btn";
 import {TasksListPropsType} from "../TodoList/TodoList";
 import EditableSpan from "./EditableSpan";
 
@@ -26,7 +26,7 @@ export const TaskList = (props: TasksListPropsType) => {
           <li key={id} className={isDone ? "is-done" : ""}>
             <input onChange={onCheckBoxChange} type="checkbox" checked={isDone}/>
             <EditableSpan title={title} onChange={onChangeTitleHandler}/>
-            <Button onClickHandler={() => props.removeTask(id, props.todoListId)} title={'x'}/>
+            <Btn onClickHandler={() => props.removeTask(id, props.todoListId)} title={'x'}/>
           </li>)
 
       })}

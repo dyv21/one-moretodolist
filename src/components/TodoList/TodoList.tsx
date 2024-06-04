@@ -1,7 +1,7 @@
 import React from 'react';
 import {AddInputForm} from "../AddInputForm";
 import {TaskList, TaskType} from "../Task/TaskList";
-import {Button} from "../Button";
+import {Btn} from "../Btn";
 import {FilterValuesType} from "../../App";
 import EditableSpan from "../Task/EditableSpan";
 
@@ -44,7 +44,7 @@ export const TodoList = (props: TodoListPropsType) => {
     <div>
       <div className="todolist-title-container">
         <h3><EditableSpan title={props.title} onChange={onChangeTitleHandler}/></h3>
-        <Button title={'x'} onClickHandler={() => props.removeTodolistHandler(props.id)}/>
+        <Btn title={'x'} onClickHandler={() => props.removeTodolistHandler(props.id)}/>
       </div>
 
       <AddInputForm addItem={addTaskCallBack}/>
@@ -57,9 +57,9 @@ export const TodoList = (props: TodoListPropsType) => {
         todoListId={props.id}
       />
       <div>
-        <Button onClickHandler={onChangeAllHandler} title={'All'} className={props.filter === 'all' ? "active-filter" : ''}/>
-        <Button onClickHandler={onChangeActiveHandler} title={'Active'} className={props.filter === 'active' ? "active-filter" : ''}/>
-        <Button onClickHandler={onChangeCompletedHandler} title={'Completed'} className={props.filter === 'completed' ? "active-filter" : ''}/>
+        <Btn onClickHandler={onChangeAllHandler} title={'All'} variant={props.filter === 'all' ? "contained" : undefined}/>
+        <Btn onClickHandler={onChangeActiveHandler} title={'Active'} variant={props.filter === 'active' ? "contained" : undefined}/>
+        <Btn onClickHandler={onChangeCompletedHandler} title={'Completed'} variant={props.filter === 'completed' ? "contained" : undefined}/>
       </div>
     </div>
   );
