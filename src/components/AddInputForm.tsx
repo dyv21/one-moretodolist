@@ -1,5 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useRef, useState} from 'react';
 import {Btn} from "./Btn";
+import {IconButton} from "@mui/material";
+import {Add} from "@mui/icons-material";
 
 type InputProps = {
   addItem: (value: string) => void;
@@ -32,7 +34,9 @@ const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => setInputValue
   return (
     <div>
       <input value={inputValue} onChange={onChangeInputHandler} onKeyUp={onKeyPressHandler} className={error ? "error" : ""}/>
-      <Btn onClickHandler={() => { setNewInputValue()}} title={'+'}/>
+      <IconButton size='small'  onClick={() => {setNewInputValue()}} title={'+'}>
+        <Add color="primary"/>
+      </IconButton>
       {error && <div className='error-message'>Field is required</div>}
     </div>
   );
