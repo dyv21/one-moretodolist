@@ -4,6 +4,8 @@ import {TaskList, TaskType} from "../Task/TaskList";
 import {Btn} from "../Btn";
 import {FilterValuesType} from "../../App";
 import EditableSpan from "../Task/EditableSpan";
+import {IconButton} from "@mui/material";
+import {Delete} from "@mui/icons-material";
 
 export type TasksListPropsType = {
   tasks: Array<TaskType>,
@@ -44,7 +46,9 @@ export const TodoList = (props: TodoListPropsType) => {
     <div>
       <div className="todolist-title-container">
         <h3><EditableSpan title={props.title} onChange={onChangeTitleHandler}/></h3>
-        <Btn title={'x'} onClickHandler={() => props.removeTodolistHandler(props.id)}/>
+        <IconButton size='small' onClick={() => props.removeTodolistHandler(props.id)}>
+          <Delete/>
+        </IconButton>
       </div>
 
       <AddInputForm addItem={addTaskCallBack}/>
