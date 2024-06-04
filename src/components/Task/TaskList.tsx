@@ -15,7 +15,7 @@ export type TaskType = {
 export const TaskList = (props: TasksListPropsType) => {
 
   return (
-    <ul>
+    <div>
       {props.tasks.map(({id, title, isDone}) => {
         const onCheckBoxChange = (e: ChangeEvent<HTMLInputElement>) => {
           props.changeTaskStatus(id, e.currentTarget.checked, props.todoListId)
@@ -25,17 +25,17 @@ export const TaskList = (props: TasksListPropsType) => {
         }
 
         return (
-          <li key={id} className={isDone ? "is-done" : ""}>
+          <div key={id} className={isDone ? "is-done" : ""}>
             <Checkbox onChange={onCheckBoxChange} defaultChecked={isDone}/>
             <EditableSpan title={title} onChange={onChangeTitleHandler}/>
             <IconButton size='small' onClick={() => props.removeTask(id, props.todoListId)}>
               <Delete/>
             </IconButton>
-          </li>)
+          </div>)
 
       })}
 
-    </ul>
+    </div>
   );
 };
 
