@@ -109,7 +109,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div>
       <AppBar position="static">
         <Toolbar>
           <IconButton edge={"start"} color="inherit" aria-label={'Menu'}>
@@ -126,8 +126,8 @@ function App() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container fixed>
-        <Grid container style={{padding: '20px'}}>
+      <Container fixed >
+        <Grid container  style={{padding: '20px 0'}}>
           <AddInputForm addItem={addTodoList}/>
         </Grid>
         <Grid container spacing={10}>
@@ -141,7 +141,7 @@ function App() {
             }
             return (
               <Grid item>
-                <Paper elevation={6} style={{padding: '10px 20px'}}>
+                <Paper elevation={6} style={{padding: '20px'}}>
                   <TodoList
                     id={tl.id}
                     title={tl.title}

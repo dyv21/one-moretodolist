@@ -1,10 +1,9 @@
 import React from 'react';
 import {AddInputForm} from "../AddInputForm";
 import {TaskList, TaskType} from "../Task/TaskList";
-import {Btn} from "../Btn";
 import {FilterValuesType} from "../../App";
 import EditableSpan from "../Task/EditableSpan";
-import {Grid, IconButton} from "@mui/material";
+import {Button, Grid, IconButton} from "@mui/material";
 import {Delete} from "@mui/icons-material";
 
 export type TasksListPropsType = {
@@ -61,11 +60,11 @@ export const TodoList = (props: TodoListPropsType) => {
         todoListId={props.id}
       />
       <div>
-        <Btn onClickHandler={onChangeAllHandler} title={'All'} variant={props.filter === 'all' ? "contained" : 'text'}/>
-        <Btn onClickHandler={onChangeActiveHandler} title={'Active'}
-             variant={props.filter === 'active' ? "contained" : 'text'}/>
-        <Btn onClickHandler={onChangeCompletedHandler} title={'Completed'}
-             variant={props.filter === 'completed' ? "contained" : 'text'}/>
+        <Button onClick={onChangeAllHandler} variant={props.filter === 'all' ? "contained" : 'text'}>All</Button>
+        <Button onClick={onChangeActiveHandler}
+             variant={props.filter === 'active' ? "contained" : 'text'}>Active</Button>
+        <Button onClick={onChangeCompletedHandler}
+             variant={props.filter === 'completed' ? "contained" : 'text'}>Completed</Button>
       </div>
     </div>
   );
