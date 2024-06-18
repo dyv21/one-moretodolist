@@ -33,13 +33,8 @@ export const TodoList = (props: TodoListPropsType) => {
   const onChangeAllHandler = () => props.changeFilter('all', props.id)
   const onChangeActiveHandler = () => props.changeFilter('active', props.id)
   const onChangeCompletedHandler = () => props.changeFilter('completed', props.id)
-
   const addTaskCallBack = (title: string) => props.addTask(title, props.id)
-
-  const onChangeTitleHandler = (title: string) => {
-
-    props.changeTodoListTitle(props.id, title)
-  }
+  const onChangeTitleHandler = (title: string) => props.changeTodoListTitle(props.id, title)
 
   return (
     <div>
@@ -62,9 +57,9 @@ export const TodoList = (props: TodoListPropsType) => {
       <div>
         <Button onClick={onChangeAllHandler} variant={props.filter === 'all' ? "contained" : 'text'}>All</Button>
         <Button onClick={onChangeActiveHandler}
-             variant={props.filter === 'active' ? "contained" : 'text'}>Active</Button>
+                variant={props.filter === 'active' ? "contained" : 'text'}>Active</Button>
         <Button onClick={onChangeCompletedHandler}
-             variant={props.filter === 'completed' ? "contained" : 'text'}>Completed</Button>
+                variant={props.filter === 'completed' ? "contained" : 'text'}>Completed</Button>
       </div>
     </div>
   );

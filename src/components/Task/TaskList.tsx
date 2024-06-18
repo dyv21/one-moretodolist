@@ -11,7 +11,6 @@ export type TaskType = {
   isDone: boolean
 }
 
-
 export const TaskList = (props: TasksListPropsType) => {
 
   return (
@@ -20,7 +19,7 @@ export const TaskList = (props: TasksListPropsType) => {
         const onCheckBoxChange = (e: ChangeEvent<HTMLInputElement>) => {
           props.changeTaskStatus(id, e.currentTarget.checked, props.todoListId)
         }
-        const onChangeTitleHandler = (titleValue:string) => {
+        const onChangeTitleHandler = (titleValue: string) => {
           props.changeTaskTitle(id, titleValue, props.todoListId);
         }
 

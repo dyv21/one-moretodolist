@@ -5,7 +5,7 @@ import {v1} from 'uuid'
 import {TaskType} from "./components/Task/TaskList";
 import {AddInputForm} from "./components/AddInputForm";
 import {AppBar, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@mui/material";
-import {MenuBook, MenuOpen, MenuOutlined} from "@mui/icons-material";
+import {MenuOutlined} from "@mui/icons-material";
 
 export type FilterValuesType = 'all' | 'active' | 'completed'
 export type TodoListType = {
@@ -56,15 +56,12 @@ function App() {
     setTasksList({...tasksList})
   }
   const removeTask = (id: string, todolistId: string) => {
-
     let tasks = tasksList[todolistId]
     tasksList[todolistId] = tasks.filter(t => t.id !== id)
     setTasksList({...tasksList})
   }
   const changeFilter = (filter: FilterValuesType, todolistId: string) => {
-    const newTodoList = todoLists.map(todo => (
-      todo.id === todolistId ? {...todo, filter} : todo
-    ))
+    const newTodoList = todoLists.map(todo => todo.id === todolistId ? {...todo, filter} : todo)
     setTodoLists(newTodoList)
   }
   const addTask = (title: string, todolistId: string) => {
@@ -109,25 +106,23 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <AppBar position="static">
         <Toolbar>
           <IconButton edge={"start"} color="inherit" aria-label={'Menu'}>
             <MenuOutlined/>
-
           </IconButton>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{flexGrow: 1, display: {xs: 'none', sm: 'block'}}}
-          >
+            sx={{flexGrow: 1, display: {xs: 'none', sm: 'block'}}}>
             OneMoreTodoLIts
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container fixed >
-        <Grid container  style={{padding: '20px 0'}}>
+      <Container fixed>
+        <Grid container style={{padding: '20px 0'}}>
           <AddInputForm addItem={addTodoList}/>
         </Grid>
         <Grid container spacing={10}>
@@ -141,7 +136,7 @@ function App() {
             }
             return (
               <Grid item>
-                <Paper elevation={6} style={{padding: '20px'}}>
+                <Paper elevation={6} sx={{padding: '20px', borderRadius: '0px'}}>
                   <TodoList
                     id={tl.id}
                     title={tl.title}
@@ -162,8 +157,7 @@ function App() {
         </Grid>
       </Container>
 
-
-    </div>
+    </>
   );
 }
 

@@ -3,7 +3,7 @@ import {TextField} from "@mui/material";
 
 type EditableSpanPropsType = {
   title: string,
-  onChange: (value:string) => void,
+  onChange: (value: string) => void,
 }
 
 const EditableSpan = ({title, onChange}: EditableSpanPropsType) => {
@@ -19,12 +19,11 @@ const EditableSpan = ({title, onChange}: EditableSpanPropsType) => {
     onChange(inputValue)
   }
 
-  const onChangeTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.currentTarget.value);
-  }
+  const onChangeTitleHandler = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.currentTarget.value);
 
   return editMode
-    ? <TextField size={'small'} color={"success"} value={inputValue} onBlur={activateViewMode} onChange={onChangeTitleHandler} autoFocus/>
+    ? <TextField size={'small'} color={"success"} value={inputValue} onBlur={activateViewMode}
+                 onChange={onChangeTitleHandler} autoFocus/>
     : <span onDoubleClick={activateEditMode}>{title}</span>
 
 }
