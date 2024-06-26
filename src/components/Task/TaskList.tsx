@@ -15,6 +15,7 @@ export const TaskList = (props: TasksListPropsType) => {
 
   return (
     <List>
+
       {props.tasks.map(({id, title, isDone}) => {
         const onCheckBoxChange = (e: ChangeEvent<HTMLInputElement>) => {
           props.changeTaskStatus(id, e.currentTarget.checked, props.todoListId)

@@ -33,7 +33,7 @@ export type ChangeTaskTitleActionType = {
   }
 }
 
-type ActionsType =
+export type TasksActionsType =
   | RemoveTaskActionType
   | AddTaskActionType
   | ChangeTaskStatusActionType
@@ -73,7 +73,7 @@ export const changeTaskTitleAC = (id: string, title: string, todolistId: string)
   return {type: 'CHANGE-TASK-TITLE', payload: {id, title, todolistId}} as const
 }
 
-export const tasksReducer = (state: TasksStateType = initialState, action: ActionsType): TasksStateType => {
+export const tasksReducer = (state: TasksStateType = initialState, action: TasksActionsType): TasksStateType => {
   switch (action.type) {
     case 'REMOVE-TASK': {
       const todoListId = action.payload.todolistId

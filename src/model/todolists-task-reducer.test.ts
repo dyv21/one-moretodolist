@@ -17,5 +17,4 @@ test('ID should be equal', () => {
 
   expect(idFromTask).toBe(action.payload.todoListId)
   expect(idFromTodoList).toEqual(action.payload.todoListId)
-
 })

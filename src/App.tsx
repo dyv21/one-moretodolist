@@ -60,7 +60,7 @@ function App() {
     tasksList[todolistId] = tasks.filter(t => t.id !== id)
     setTasksList({...tasksList})
   }
-  const changeFilter = (filter: FilterValuesType, todolistId: string) => {
+  const changeFilter = ( todolistId: string, filter: FilterValuesType) => {
     const newTodoList = todoLists.map(todo => todo.id === todolistId ? {...todo, filter} : todo)
     setTodoLists(newTodoList)
   }

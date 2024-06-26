@@ -17,7 +17,7 @@ export type TasksListPropsType = {
 export type TodoListPropsType = {
   tasks: Array<TaskType>,
   removeTask: (id: string, todolistId: string) => void,
-  changeFilter: (filter: FilterValuesType, todoListId: string) => void,
+  changeFilter: (todoListId: string, filter: FilterValuesType) => void,
   addTask: (title: string, todolistId: string) => void,
   changeTaskStatus: (taskId: string, isDone: boolean, todoListId: string) => void,
   filter: FilterValuesType,
@@ -30,9 +30,9 @@ export type TodoListPropsType = {
 
 export const TodoList = (props: TodoListPropsType) => {
 
-  const onChangeAllHandler = () => props.changeFilter('all', props.id)
-  const onChangeActiveHandler = () => props.changeFilter('active', props.id)
-  const onChangeCompletedHandler = () => props.changeFilter('completed', props.id)
+  const onChangeAllHandler = () => props.changeFilter(props.id, 'all')
+  const onChangeActiveHandler = () => props.changeFilter(props.id, 'active')
+  const onChangeCompletedHandler = () => props.changeFilter(props.id, 'completed')
   const addTaskCallBack = (title: string) => props.addTask(title, props.id)
   const onChangeTitleHandler = (title: string) => props.changeTodoListTitle(props.id, title)
 
@@ -46,7 +46,7 @@ export const TodoList = (props: TodoListPropsType) => {
       </Grid>
 
       <AddInputForm addItem={addTaskCallBack}/>
-      {props.tasks.length === 0 && <p>List ii empty</p>}
+      {props.tasks && props.tasks.length === 0 && <p>List ii empty</p>}
       <TaskList
         tasks={props.tasks}
         removeTask={props.removeTask}
