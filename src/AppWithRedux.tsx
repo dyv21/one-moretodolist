@@ -87,12 +87,11 @@ function AppWithRedux() {
           {todoLists.map((tl) => {
 
             return (
-              <Grid item>
+              <Grid item key={tl.id}>
                 <Paper elevation={6} sx={{padding: '20px', borderRadius: '0px'}}>
                   <TodoList
                     id={tl.id}
                     title={tl.title}
-                    key={tl.id}
                     filter={tl.filter}
                     tasks={tasks[tl.id]}
                     removeTask={removeTask}

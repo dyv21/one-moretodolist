@@ -77,20 +77,12 @@ export const tasksReducer = (state = initialState, action: TasksActionsType): Ta
       }
     }
     case 'CHANGE-TASK-STATUS': {
-
-        let todolistTasks = state[action.payload.todolistId];
-        let newTasksArray = todolistTasks
-          .map(t => t.id === action.payload.id ? {...t, isDone: action.payload.isDone} : t);
-
-        state[action.payload.todolistId] = newTasksArray
-        return ({...state});
-
-      // const todoListId = action.payload.todolistId
-      // return {
-      //   ...state,
-      //   [todoListId]: state[todoListId]
-      //     .map(t => t.id === action.payload.id ? {...t, isDone: action.payload.isDone} : t)
-      // }
+      const todoListId = action.payload.todolistId
+      return {
+        ...state,
+        [todoListId]: state[todoListId]
+          .map(t => t.id === action.payload.id ? {...t, isDone: action.payload.isDone} : t)
+      }
     }
     case 'CHANGE-TASK-TITLE': {
       const todoListId = action.payload.todolistId
