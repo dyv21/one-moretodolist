@@ -41,24 +41,8 @@ export type TasksActionsType =
   | AddTodolistActionType
   | RemoveTodolistActionType
 
-const todoListId1 = v1()
-const todoListId2 = v1()
 
-const initialState: TasksStateType = {
-  [todoListId1]: [
-    {id: v1(), title: "HTML&CSS", isDone: true},
-    {id: v1(), title: "JS", isDone: true},
-    {id: v1(), title: "ReactJS", isDone: false},
-    {id: v1(), title: "Reast API", isDone: false},
-    {id: v1(), title: "GraphQL", isDone: false}
-  ],
-  [todoListId2]: [
-    {id: v1(), title: "Milk", isDone: true},
-    {id: v1(), title: "Bread", isDone: false},
-    {id: v1(), title: "Eggs", isDone: true},
-    {id: v1(), title: "Sugar", isDone: true},
-  ],
-}
+const initialState: TasksStateType = {}
 
 export const removeTaskAC = (id: string, todolistId: string): RemoveTaskActionType => {
   return {type: 'REMOVE-TASK', payload: {id, todolistId}} as const
@@ -73,7 +57,7 @@ export const changeTaskTitleAC = (id: string, title: string, todolistId: string)
   return {type: 'CHANGE-TASK-TITLE', payload: {id, title, todolistId}} as const
 }
 
-export const tasksReducer = (state: TasksStateType = initialState, action: TasksActionsType): TasksStateType => {
+export const tasksReducer = (state = initialState, action: TasksActionsType): TasksStateType => {
   switch (action.type) {
     case 'REMOVE-TASK': {
       const todoListId = action.payload.todolistId
@@ -120,6 +104,6 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Tasks
     }
 
     default:
-      throw Error('Unknown action type')
+      return state
   }
 }

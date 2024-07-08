@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, memo, useState} from 'react';
 
 import {IconButton, TextField} from "@mui/material";
 import {Add} from "@mui/icons-material";
@@ -7,7 +7,7 @@ type InputProps = {
   addItem: (value: string) => void;
 }
 
-export const AddInputForm = (props: InputProps) => {
+export const AddInputForm = memo((props: InputProps) => {
 
   let [inputValue, setInputValue] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
@@ -25,7 +25,7 @@ export const AddInputForm = (props: InputProps) => {
   const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.currentTarget.value)
 
   const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    setError(null)
+    if (error) {setError(null)}
     if (e.ctrlKey && e.key || e.key === 'Enter') {
       setNewInputValue()
     }
@@ -35,7 +35,8 @@ export const AddInputForm = (props: InputProps) => {
     <div>
       <TextField
         size='small'
-        value={inputValue} onChange={onChangeInputHandler}
+        value={inputValue}
+        onChange={onChangeInputHandler}
         onKeyUp={onKeyPressHandler}
         label={'Enter text'}
         error={!!error}
@@ -46,4 +47,4 @@ export const AddInputForm = (props: InputProps) => {
       </IconButton>
     </div>
   );
-};
+})
