@@ -48,8 +48,6 @@ export const TodoList = memo((props: TodoListPropsType) => {
     return tasks
   }, [props.tasks, props.filter])
 
-  debugger
-
   return (
     <div>
       <Grid container>

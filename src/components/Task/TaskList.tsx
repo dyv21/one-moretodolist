@@ -27,7 +27,9 @@ const Task = memo((props: TaskPropsType) => {
   const onChangeTitleHandler = (titleValue: string) => {
     props.changeTaskTitle(props.task.id, titleValue, props.todoListId);
   }
-  const removeTaskHandler = () => props.removeTask(props.task.id, props.todoListId)
+  const removeTaskHandler = () => {
+    props.removeTask(props.task.id, props.todoListId)
+  }
 
   return (
     <ListItem  className={props.task.isDone ? "is-done" : ""}>
@@ -40,7 +42,6 @@ const Task = memo((props: TaskPropsType) => {
 })
 
 export const TaskList = memo((props: TasksListPropsType) => {
-
   return (
     <List>
       {props.tasks.map((task) => {
@@ -53,6 +54,7 @@ export const TaskList = memo((props: TasksListPropsType) => {
             changeTaskTitle={props.changeTaskTitle}
             removeTask={props.removeTask}
           />)
+
       })}
     </List>
   );

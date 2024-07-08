@@ -51,7 +51,7 @@ export const addTaskAC = (title: string, todolistId: string): AddTaskActionType 
   return {type: 'ADD-TASK', payload: {title, todolistId}} as const
 }
 export const changeTaskStatusAC = (id: string, isDone: boolean, todolistId: string): ChangeTaskStatusActionType => {
-  return {type: 'CHANGE-TASK-STATUS', payload: {id, isDone: false, todolistId}} as const
+  return {type: 'CHANGE-TASK-STATUS', payload: {id, isDone, todolistId}} as const
 }
 export const changeTaskTitleAC = (id: string, title: string, todolistId: string): ChangeTaskTitleActionType => {
   return {type: 'CHANGE-TASK-TITLE', payload: {id, title, todolistId}} as const
@@ -70,18 +70,27 @@ export const tasksReducer = (state = initialState, action: TasksActionsType): Ta
       const todoListId = action.payload.todolistId
       const newTaskList = state[todoListId]
       const newTaskTemplate = {id: v1(), title: action.payload.title, isDone: false}
+
       return {
         ...state,
         [todoListId]: Array(newTaskTemplate, ...newTaskList)
       }
     }
     case 'CHANGE-TASK-STATUS': {
-      const todoListId = action.payload.todolistId
-      return {
-        ...state,
-        [todoListId]: state[todoListId]
-          .map(t => t.id === action.payload.id ? {...t, isDone: action.payload.isDone} : t)
-      }
+
+        let todolistTasks = state[action.payload.todolistId];
+        let newTasksArray = todolistTasks
+          .map(t => t.id === action.payload.id ? {...t, isDone: action.payload.isDone} : t);
+
+        state[action.payload.todolistId] = newTasksArray
+        return ({...state});
+
+      // const todoListId = action.payload.todolistId
+      // return {
+      //   ...state,
+      //   [todoListId]: state[todoListId]
+      //     .map(t => t.id === action.payload.id ? {...t, isDone: action.payload.isDone} : t)
+      // }
     }
     case 'CHANGE-TASK-TITLE': {
       const todoListId = action.payload.todolistId
