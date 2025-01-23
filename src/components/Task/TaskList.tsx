@@ -20,7 +20,7 @@ export type TaskPropsType = {
   removeTask: (id: string, todolistId: string) => void
 }
 
-const Task = memo((props: TaskPropsType) => {
+export const Task = memo((props: TaskPropsType) => {
   const onCheckBoxChange = (e: ChangeEvent<HTMLInputElement>) => {
     props.changeTaskStatus(props.task.id, e.currentTarget.checked, props.todoListId)
   }
